@@ -3,11 +3,11 @@ import Cartwidget from '../CartWidget/Cartwidget'
 import "./NavBar.css"
 
 
-const navbar = () => {
+const navbar = ({carrito}) => {
     return (
         <header className="header">
         <section className="container">
-        <Cartwidget/>
+        <Cartwidget  carrito={carrito}/>
            
             <nav className="menu">
                 
