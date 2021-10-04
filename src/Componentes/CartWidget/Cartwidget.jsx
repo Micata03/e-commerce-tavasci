@@ -8,6 +8,7 @@ function Cartwidget() {
         <div>
             <a href="carrito.html">
             <img src={logo} alt="carrito" className="logo-carrito" />
+            <div className="cant-display">0</div>
             </a>
         </div>
     )

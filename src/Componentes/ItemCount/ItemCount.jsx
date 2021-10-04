@@ -1,31 +1,45 @@
-import React, { useState } from 'react'
+import React from 'react';
+import { useState } from 'react';
 
-const ItemCount = ({stock}) => {
 
-    // stock => tienes que recibir como parametro en el main , recuerda poner lo !
 
-    // es el state que manipula la cantidad de clicks que haz hecho ! 
-    // recuerda descomentar lo en el Main , si vas a usar ) 
+const ItemCount = ({ initial, stock, onAdd }) => {
+  //hook de estado
+  const [cant, setCant] = useState(initial);
 
-    const [clicks , setClicks] = useState(0)
+  const addProduct = (num) => {
+    setCant(cant + num);
+  };
 
-    // es la funcion que incrementa los clicks siempre y cuando sean menor que el stock 
-    const addClick = () => {
-        if(clicks < stock) setClicks(clicks+1)
-    }
+  return (
+    <div className="count-container">
+      <div className="count-container__contador">
+        <button
+          className="count-container__button"
+          onClick={() => addProduct(-1)}
+          disabled={cant === initial ? true : null}
+        >
+          -
+        </button>
+        <span className="count-container__qty">{cant}</span>
+        <button
+          className="count-container__button"
+          onClick={() => addProduct(+1)}
+          disabled={cant === stock ? true : null}
+        >
+          +
+        </button>
+      </div>
 
-    // es la funcion que disminuye los clicks siempre y cuando sean mayor a 0 
-    const removeClick = () => {
-        if(stock > 0) setClicks(clicks-1)
-    }
-    return (
-        <div>
-            {/* Aca en el h1 muestro los clicks y en onClicks de bontones estoy asignando las funciones correspondientes */}
-        <h1>{clicks}</h1>
-        <button onClick={()=>addClick()}>Add</button>
-        <button onClick={()=>removeClick()}>Remove</button>
-        </div>
-    )
-}
+      <button
+        className="button-primary"
+        onClick={() => onAdd(cant)}
+        disabled={stock === 0 ? true : null}
+      >
+        Añadir
+      </button>
+    </div>
+  );
+};
 
-export default ItemCount
+export default ItemCount;

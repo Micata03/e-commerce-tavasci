@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import './Main.css'
 import NavBar from '../NavBar/NavBar'
 import ItemListContainer from '../ItemListContainer/ItemListContainer'
-import ItemCount from '../ItemCount/ItemCount'
+
 
 
 function Main() {
@@ -20,7 +20,7 @@ function Main() {
         addToCardWidget={addToCardWidget}
         
         />
-        <ItemCount stock={20}/>
+       
         <ItemListContainer greetings ={"Bienvenido a mi tienda"} /></>
     )
 }
