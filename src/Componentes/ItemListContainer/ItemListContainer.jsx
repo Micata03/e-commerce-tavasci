@@ -1,19 +1,20 @@
-import React from 'react'
-import productFoto from '../Assets/labial.jpg'
-import './ItemListContainer.css'
-import Items from '../Items/Items'
+import React from 'react';
+import  ItemList  from '../ItemList/ItemList';
+import './ItemListContainer.css';
 
 
-function ItemListContainer({greetings}) {
-    
-    return (
-        <div className="container">
-            <h1>{greetings}</h1>
-            
-            <Items image={productFoto} name={'Labial Rosa'} price={240} stock={17} />
-            
-        </div>
-    )
-}
 
-export default ItemListContainer
+
+const ItemListContainer = ({greetings}) => {
+ 
+
+  return (
+    <section className="container">
+      <h1>{greetings}</h1>
+      <ItemList></ItemList>
+     
+    </section>
+  );
+};
+
+export default ItemListContainer;

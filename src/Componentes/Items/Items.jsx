@@ -4,22 +4,42 @@ import './Items.css';
 
 
 
-const Items = ({ name, image, price, stock }) => {
+
+const Items = ({ product}) => {
+
+  const { image, title, price, rating } = product
+
   const onAdd = (cant) => {
-    alert(`Has agregado ${cant} Labial`);
+    alert(`Has agregado ${cant} `);
+
   };
 
+  
+
   return (
-    <article className="contact-cards">
-     <aside className ="contact-card">   
-      <img className="product-card__image" src={image} alt="" />
+    <section className="cards-container">
+        <div className="card-container">
+          
 
-      <h3 className="product-card__name">{name}</h3>
-      <span className="product-card__name">${price}</span>
+        <img src={image} alt={title} />
+        <button className="btn btn-card">Ver mas informacion</button>
+        <div className="description">
+            <h3 className="titulo_card">{title}</h3>
+            <ul>
+                <li><b>Producto:</b> {title}</li>
+                <li><b>Price:</b> $ {price}</li>
+                
+                <li><b>Stock:</b> {rating.count}</li>
+                
+               <ItemCount  onAdd={onAdd} initial={1} />
+            </ul>
+        </div>
+       
+    </div>
+    </section>
 
-      <ItemCount stock={stock} onAdd={onAdd} initial={1} />
-      </aside>
-    </article>
+      
+      
   );
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import './ItemCount.css'
 
 
 
@@ -15,15 +16,15 @@ const ItemCount = ({ initial, stock, onAdd }) => {
     <div className="count-container">
       <div className="count-container__contador">
         <button
-          className="count-container__button"
+          className="btn"
           onClick={() => addProduct(-1)}
           disabled={cant === initial ? true : null}
         >
           -
         </button>
-        <span className="count-container__qty">{cant}</span>
+        <span className=" btn">{cant}</span>
         <button
-          className="count-container__button"
+          className=" btn"
           onClick={() => addProduct(+1)}
           disabled={cant === stock ? true : null}
         >
@@ -32,7 +33,7 @@ const ItemCount = ({ initial, stock, onAdd }) => {
       </div>
 
       <button
-        className="button-primary"
+        className="btn"
         onClick={() => onAdd(cant)}
         disabled={stock === 0 ? true : null}
       >
