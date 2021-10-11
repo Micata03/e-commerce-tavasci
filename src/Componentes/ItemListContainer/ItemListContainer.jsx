@@ -1,5 +1,6 @@
 import React from 'react';
-import  ItemList  from '../ItemList/ItemList';
+import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer';
+
 import './ItemListContainer.css';
 
 
@@ -11,7 +12,7 @@ const ItemListContainer = ({greetings}) => {
   return (
     <section className="container">
       <h1>{greetings}</h1>
-      <ItemList></ItemList>
+      <ItemDetailContainer/>
      
     </section>
   );
