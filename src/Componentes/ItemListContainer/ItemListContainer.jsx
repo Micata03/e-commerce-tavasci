@@ -1,7 +1,7 @@
 import React from 'react';
-import ItemDetailContainer from '../ItemDetailContainer/ItemDetailContainer';
 
-import './ItemListContainer.css';
+import ItemList from '../ItemList/ItemList'
+
 
 
 
@@ -10,12 +10,16 @@ const ItemListContainer = ({greetings}) => {
  
 
   return (
-    <section className="container">
+    <section >
       <h1>{greetings}</h1>
-      <ItemDetailContainer/>
+      
+      <ItemList/>
+    
      
     </section>
   );
 };
 
 export default ItemListContainer;
+
+

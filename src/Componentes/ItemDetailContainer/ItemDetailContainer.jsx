@@ -1,13 +1,13 @@
-
-
-import React from 'react'
+import React from "react";
+import  ItemDetail  from "../ItemDetail/ItemDetail";
 import Loader from "react-loader-spinner";
-import ItemDetail from '../ItemDetail/ItemDetail';
-import '../ItemListContainer/ItemListContainer.css'
+import { useParams } from "react-router-dom";
 
 const ItemDetailContainer = () =>{
 
-const [productos, setProductos] = React.useState([])
+    
+
+    const [items, setItems] = React.useState([])
     const [loading, setLoading] = React.useState(true)
 
     React.useEffect(() => {
@@ -18,12 +18,15 @@ const [productos, setProductos] = React.useState([])
         }, 2000)
     }, [])
 
+   const { id } = useParams();
+
     const obtenerDatos = async() =>{
-        const data = await fetch('https://fakestoreapi.com/products')
-        const  product = await data.json()
-        
-        setProductos(product)
-    }
+      const data = await fetch(`https://fakestoreapi.com/products/${id}`)
+      const  item = await data.json()
+      
+      setItems(item)
+  }
+
 
     return (
         <>
@@ -31,15 +34,22 @@ const [productos, setProductos] = React.useState([])
             loading ?
             <Loader
             type="Puff"
-            color="#d694b2"
+            color="#ccc"
             height={100}
             width={100}
             timeout={3000} //3 secs
         />
         :
-        productos.map(product => <ItemDetail Key={product.id} product={product} />)
+        
+          <ItemDetail
+            key={items.id}
+            title={items.title}
+            description={items.description}
+            price={items.price}
+            stock={items.id}
+            image={items.image}/>
     
-    }
+        }
         
 
        </> 

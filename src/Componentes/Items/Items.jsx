@@ -1,8 +1,7 @@
-import React from 'react';
-
-import ItemCount from '../ItemCount/ItemCount';
-
-import './Items.css';
+import React from 'react'
+import './Items.css'
+import ItemCount from '../ItemCount/ItemCount'
+import {Link} from 'react-router-dom'
 
 
 
@@ -10,6 +9,7 @@ import './Items.css';
 const Items = ({ product}) => {
 
   const { image, title, price, rating } = product
+  
 
   const onAdd = (cant) => {
     alert(`Has agregado ${cant} `);
@@ -24,7 +24,6 @@ const Items = ({ product}) => {
           
 
         <img src={image} alt={title} />
-      
         <div className="description">
             <h3 className="titulo_card">{title}</h3>
             <ul>
@@ -33,16 +32,16 @@ const Items = ({ product}) => {
                 
                 <li><b>Stock:</b> {rating.count}</li>
                 
+                    <Link to={`/items/${product.id}`} className= "btn" >
+                    Ver mas informacion </Link> 
+                
                <ItemCount  onAdd={onAdd} initial={1} />
-            </ul>
+               </ul>
         </div>
        
     </div>
     </section>
-
-      
-      
-  );
+    )
 };
 
 export default Items;
