@@ -20,7 +20,7 @@
 
 .cards-container{
     display: grid;
-    grid-template-columns: repeat(2, 48% );
+    grid-template-columns: repeat(2, 1fr );
     justify-content: space-between;
     
     

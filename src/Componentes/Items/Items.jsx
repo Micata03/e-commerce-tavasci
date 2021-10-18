@@ -1,47 +1,31 @@
 import React from 'react'
-import './Items.css'
-import ItemCount from '../ItemCount/ItemCount'
 import {Link} from 'react-router-dom'
+import ItemCount from '../ItemCount/ItemCount'
+import './Items.css'
 
-
-
-
-const Items = ({ product}) => {
-
-  const { image, title, price, rating } = product
-  
-
-  const onAdd = (cant) => {
-    alert(`Has agregado ${cant} `);
-
-  };
-
-  
-
-  return (
-    <section className="cards-container">
-        <div className="card-container">
-          
-
-        <img src={image} alt={title} />
-        <div className="description">
-            <h3 className="titulo_card">{title}</h3>
-            <ul>
-                <li><b>Producto:</b> {title}</li>
-                <li><b>Price:</b> $ {price}</li>
-                
-                <li><b>Stock:</b> {rating.count}</li>
-                
-                    <Link to={`/items/${product.id}`} className= "btn" >
+function Items ({menuItem}) {
+    const onAdd = (cant) => {
+        alert(`Has agregado ${cant} `);
+    
+      };
+    return (
+        <div className="item">
+            {menuItem.map((item)=>{
+                return <div className="cards-container" key={item.id}>
+                    <div className="card-container">
+                        <img src={item.image} alt="foto1"/>
+                        <h2 >{item.title}</h2>
+                        <p>${item.price}</p>
+                        <p>Stock:{item.rating.count}</p>
+                        <Link to={`/items/${item.id}`} className= "btn" >
                     Ver mas informacion </Link> 
-                
-               <ItemCount  onAdd={onAdd} initial={1} />
-               </ul>
+                    <ItemCount  onAdd={onAdd} initial={1} />
+                    </div>
+                    
+                </div>
+            })}
         </div>
-       
-    </div>
-    </section>
     )
-};
+}
 
-export default Items;
+export default Items

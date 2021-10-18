@@ -1,50 +1,37 @@
-import React from "react";
-import  Items  from "../Items/Items"
-import Loader from "react-loader-spinner";
+import items from '../Assets/AllData'
 
-const ItemList = () =>{
+import Items from '../Items/Items'
+import  {useState} from 'react';
+import Button from '../Categorias/Button';
 
-    
+const allCategories = ['All',  ...new Set(items.map(item =>item.category))];
+console.log(allCategories)
 
-    const [productos, setProductos] = React.useState([])
-    const [loading, setLoading] = React.useState(true)
 
-    React.useEffect(() => {
-        
-        obtenerDatos()
-        setTimeout(() =>{
-            setLoading(false)
-        }, 2000)
-    }, [])
+function ItemList() {
+  const [menuItem, setMenuItem] = useState(items);
+  const [buttons, setButtons] = useState(allCategories);
 
-    const obtenerDatos = async() =>{
-        const data = await fetch('https://fakestoreapi.com/products')
-        const  product = await data.json()
-        
-        setProductos(product)
+  const filter = (button) =>{
+    if (button === 'All'){
+      setMenuItem(items);
+      return;
     }
-
-    return (
-        <>
-        {
-            loading ?
-            <Loader
-            type="Puff"
-            color="#d694b2"
-            height={100}
-            width={100}
-            timeout={3000} //3 secs
-        />
-        :
-        productos.map(product => <Items Key={product.id} product={product} />)
-    
-    }
+    const filterData = items.filter(item => item.category === button);
+    setMenuItem(filterData)
+  }
+  return (
+    <div className="App">
+      <div className="title">
+        <h1>Portfolio
+          <span>Filter</span>
+        </h1>
         
-
-       </> 
-
-    )
-
+      </div>
+      <Button button={buttons} filter={filter}/>
+      <Items menuItem= {menuItem}/>
+    </div>
+  );
 }
 
-export default ItemList
+export default ItemList;
